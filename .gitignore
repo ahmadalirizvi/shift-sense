@@ -23,7 +23,6 @@ yarn-error.log*
 
 # Environment variables
 .env
-.env.example
 
 # Local data storage (should not contain real schedule data in public repo)
 data/history/
@@ -43,4 +42,13 @@ Thumbs.db
 # Build outputs
 dist/
 build/
-*.egg-info/
+*.egg-info/.env
+backend/.env
+uploads/
+outputs/
+backend/uploads/
+backend/outputs/
+debug_*.py
+debug_*.xlsx
+result.xlsx
+.DS_Store
