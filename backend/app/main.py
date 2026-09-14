@@ -1,4 +1,5 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException
+from typing import List
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 import shutil
@@ -12,7 +13,7 @@ from .conflicts import ConflictDetector
 from .ai_reasoning import AIReasoningEngine
 from .models import Shift, Prediction
 
-app = FastAPI(title="Shift Sense API", description="AI-Powered Shift Allocation System")
+app = FastAPI(title="Shift Sense API", description="AI-Powered Shift Allocation System", openapi_version="3.0.3")
 
 # Configure CORS
 app.add_middleware(
@@ -45,7 +46,7 @@ async def health_check():
     return {"status": "healthy"}
 
 @app.post("/upload-historical")
-async def upload_historical_files(files: list[UploadFile] = File(...)):
+async def upload_historical_files(files: List[UploadFile] = File(...)):
     """
     Upload one or more historical week Excel files to add to the learning dataset.
     """
