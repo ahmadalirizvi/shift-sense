@@ -1,0 +1,49 @@
+# Sample Shift Data Format for Shift Sense
+# This CSV demonstrates the expected Excel format.
+# In practice, the system expects .xlsx files with one sheet per location.
+# Each sheet should have these columns: Date, Day, Shift Type, Start Time, End Time, Location, Hours, Notes
+# The Notes column contains the person's name in historical files, and is blank in "to be filled" files.
+
+# Example data for Brize Norton location:
+Date,Day,Shift Type,Start Time,End Time,Location,Hours,Notes
+2026-09-04,Saturday,Day,08:00:00,16:00:00,Brize Norton,8.0,Ghulam
+2026-09-05,Sunday,Night,22:00:00,06:00:00,Brize Norton,8.0,Hamza
+2026-09-06,Saturday,Day,08:00:00,16:00:00,Brize Norton,8.0,Ghulam
+2026-09-07,Sunday,Night,22:00:00,06:00:00,Brize Norton,8.0,Hamza
+2026-09-08,Monday,Day,08:00:00,16:00:00,Brize Norton,8.0,Ghulam
+2026-09-09,Tuesday,Night,22:00:00,06:00:00,Brize Norton,8.0,Hamza
+2026-09-10,Wednesday,Day,08:00:00,16:00:00,Brize Norton,8.0,Ghulam
+2026-09-11,Thursday,Night,22:00:00,06:00:00,Brize Norton,8.0,Hamza
+2026-09-12,Friday,Day,08:00:00,16:00:00,Brize Norton,8.0,Ghulam
+2026-09-13,Saturday,Night,22:00:00,06:00:00,Brize Norton,8.0,Hamza
+2026-09-14,Sunday,Day,08:00:00,16:00:00,Brize Norton,8.0,Ghulam
+2026-09-15,Monday,Night,22:00:00,06:00:00,Brize Norton,8.0,Hamza
+
+# Example data for Needleman Street location (showing rotation pattern):
+Date,Day,Shift Type,Start Time,End Time,Location,Hours,Notes
+2026-09-04,Saturday,Day,08:00:00,16:00:00,Needleman Street,8.0,Ghulam
+2026-09-05,Sunday,Night,22:00:00,06:00:00,Needleman Street,8.0,Hamza
+2026-09-06,Saturday,Day,08:00:00,16:00:00,Needleman Street,8.0,Hamza  # Rotation
+2026-09-07,Sunday,Night,22:00:00,06:00:00,Needleman Street,8.0,Ghulam  # Rotation
+2026-09-08,Monday,Day,08:00:00,16:00:00,Needleman Street,8.0,Ghulam
+2026-09-09,Tuesday,Night,22:00:00,06:00:00,Needleman Street,8.0,Hamza
+2026-09-10,Wednesday,Day,08:00:00,16:00:00,Needleman Street,8.0,Hamza  # Rotation
+2026-09-11,Thursday,Night,22:00:00,06:00:00,Needleman Street,8.0,Ghulam  # Rotation
+2026-09-12,Friday,Day,08:00:00,16:00:00,Needleman Street,8.0,Ghulam
+2026-09-13,Saturday,Night,22:00:00,06:00:00,Needleman Street,8.0,Hamza
+2026-09-14,Sunday,Day,08:00:00,16:00:00,Needleman Street,8.0,Hamza  # Rotation
+2026-09-15,Monday,Night,22:00:00,06:00:00,Needleman Street,8.0,Ghulam  # Rotation
+
+# Example "to be filled" week (Notes column blank):
+Date,Day,Shift Type,Start Time,End Time,Location,Hours,Notes
+2026-09-18,Saturday,Day,08:00:00,16:00:00,Brize Norton,8.0,
+2026-09-19,Sunday,Night,22:00:00,06:00:00,Brize Norton,8.0,
+2026-09-20,Saturday,Day,08:00:00,16:00:00,Needleman Street,8.0,
+2026-09-21,Sunday,Night,22:00:00,06:00:00,Needleman Street,8.0,
+
+# Notes for users:
+# 1. Save historical data as separate .xlsx files (one per week) with sheets named after locations
+# 2. The system learns from multiple historical weeks to make predictions
+# 3. For prediction, provide a similar .xlsx file but with blank Notes column
+# 4. Output will be an .xlsx file with filled Notes (green for confident, yellow for review needed)
+# 5. An additional "Suggestions" sheet will provide alternatives for flagged shifts

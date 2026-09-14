@@ -1,0 +1,3 @@
+# This file ensures the data/history directory is tracked by git
+# Actual historical schedule data should NOT be committed to this repository
+# Place your historical .xlsx files in this directory for the system to learn from

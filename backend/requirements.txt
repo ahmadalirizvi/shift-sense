@@ -1,0 +1,8 @@
+# Backend Requirements for Shift Sense
+fastapi>=0.104.0
+uvicorn>=0.24.0
+pandas>=2.1.0
+openpyxl>=3.1.0
+python-multipart>=0.0.6
+google-genai>=0.0.1  # Optional Gemini API layer
+python-dotenv>=1.0.0  # For loading environment variables
