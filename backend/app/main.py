@@ -59,7 +59,7 @@ async def upload_historical_files(files: List[UploadFile] = File(...)):
     processed_files = []
 
     for file in files:
-        if not file.filename.endswith('.xlsx'):
+        if not file.filename or not file.filename.lower().endswith('.xlsx'):
             raise HTTPException(status_code=400, detail=f"File {file.filename} is not an Excel file")
 
         # Generate unique filename to avoid conflicts
@@ -87,6 +87,10 @@ async def upload_historical_files(files: List[UploadFile] = File(...)):
                 "week_offset": week_offset
             })
 
+        except HTTPException:
+            if file_path.exists():
+                file_path.unlink()
+            raise
         except Exception as e:
             # Clean up on error
             if file_path.exists():
@@ -108,7 +112,7 @@ async def predict_shifts(file: UploadFile = File(...)):
     Returns the predictions as JSON for immediate display,
     and also generates a downloadable Excel file.
     """
-    if not file.filename.endswith('.xlsx'):
+    if not file.filename or not file.filename.lower().endswith('.xlsx'):
         raise HTTPException(status_code=400, detail="File must be an Excel file")
 
     # Generate unique filename
@@ -216,6 +220,12 @@ async def predict_shifts(file: UploadFile = File(...)):
             "download_url": f"/download/{output_filename}"
         }
 
+    except HTTPException:
+        if input_path.exists():
+            input_path.unlink()
+        if output_path.exists():
+            output_path.unlink()
+        raise
     except Exception as e:
         # Clean up on error
         if input_path.exists():
@@ -231,12 +241,13 @@ async def download_file(filename: str):
     """
     Download a generated Excel file with predictions.
     """
-    file_path = OUTPUT_DIR / filename
+    file_path = (OUTPUT_DIR / filename).resolve()
+    output_root = OUTPUT_DIR.resolve()
 
-    if not file_path.exists():
+    if output_root not in file_path.parents or not file_path.exists():
         raise HTTPException(status_code=404, detail="File not found")
 
-    if not filename.endswith('.xlsx'):
+    if file_path.suffix.lower() != '.xlsx':
         raise HTTPException(status_code=400, detail="Invalid file type")
 
     return FileResponse(
