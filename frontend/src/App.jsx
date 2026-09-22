@@ -91,7 +91,7 @@ function App() {
       </aside>
 
       <main className="main-content">
-        <header className="topbar"><div><p className="eyebrow">{activeView === 'workspace' ? 'Shift planning' : 'Learning history'}</p><h1>{activeView === 'workspace' ? 'Plan your next week.' : 'Historical data'}</h1></div></header>
+        {activeView === 'history' && <header className="topbar"><div><p className="eyebrow">Learning history</p><h1>Historical data</h1></div></header>}
         {status.message && <div className={`notice ${status.type}`} role="status">{status.message}</div>}
 
         {activeView === 'history' ? (
