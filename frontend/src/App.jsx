@@ -83,7 +83,6 @@ function App() {
     <div className="app-shell">
       <aside className="sidebar">
         <div className="brand"><span className="brand-mark">S</span><span>shift<span className="brand-accent">sense</span></span></div>
-        <div className="sidebar-connection"><span className="status-dot" /> Connected</div>
         <div className="sidebar-label">Workspace</div>
         <nav className="nav-list" aria-label="Main navigation">
           <button className={`nav-item ${activeView === 'history' ? 'active' : ''}`} onClick={() => setActiveView('history')}><span className="nav-icon">◌</span> Learning history</button>
