@@ -28,3 +28,4 @@
 .connection-button { display: inline-flex; align-items: center; border: 1px solid #9fc8f5; border-radius: 999px; background: var(--white); color: var(--blue); padding: 7px 10px; font: 500 10px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .06em; }
 .connection-button .status-dot { width: 6px; height: 6px; margin-right: 6px; }
 *, *::before, *::after { font-family: 'Roboto', sans-serif !important; }
+*, *::before, *::after { letter-spacing: normal !important; }
