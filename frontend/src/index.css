@@ -20,3 +20,7 @@
 .prediction-card .file-drop:hover { background: #fafafa; }
 .prediction-card .upload-symbol { color: var(--blue); }
 .prediction-card .file-drop small { color: var(--gray); }
+.sidebar-connection { color: var(--gray); font: 500 10px 'DM Mono', monospace; margin: 22px 10px 0; text-transform: uppercase; letter-spacing: .06em; }
+.sidebar-label { margin-top: 50px; }
+.hero-copy { margin: 0 auto; text-align: center; }
+.hero-copy > p:last-child { margin-left: auto; margin-right: auto; }

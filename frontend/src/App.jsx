@@ -83,16 +83,16 @@ function App() {
     <div className="app-shell">
       <aside className="sidebar">
         <div className="brand"><span className="brand-mark">S</span><span>shift<span className="brand-accent">sense</span></span></div>
+        <div className="sidebar-connection"><span className="status-dot" /> Connected</div>
         <div className="sidebar-label">Workspace</div>
         <nav className="nav-list" aria-label="Main navigation">
-          <button className={`nav-item ${activeView === 'workspace' ? 'active' : ''}`} onClick={() => setActiveView('workspace')}><span className="nav-icon">◈</span> Allocation desk</button>
           <button className={`nav-item ${activeView === 'history' ? 'active' : ''}`} onClick={() => setActiveView('history')}><span className="nav-icon">◌</span> Learning history</button>
         </nav>
         <div className="sidebar-bottom"><div className="model-status"><span className="status-dot" /> System ready</div></div>
       </aside>
 
       <main className="main-content">
-        <header className="topbar"><div><p className="eyebrow">{activeView === 'workspace' ? 'Allocation desk' : 'Learning history'}</p><h1>{activeView === 'workspace' ? 'Plan your next week.' : 'Historical data'}</h1></div><div className="topbar-meta"><span className="status-dot" /> Connected</div></header>
+        <header className="topbar"><div><p className="eyebrow">{activeView === 'workspace' ? 'Shift planning' : 'Learning history'}</p><h1>{activeView === 'workspace' ? 'Plan your next week.' : 'Historical data'}</h1></div></header>
         {status.message && <div className={`notice ${status.type}`} role="status">{status.message}</div>}
 
         {activeView === 'history' ? (
