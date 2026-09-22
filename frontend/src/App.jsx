@@ -9,7 +9,7 @@ async function readResponse(response) {
 }
 
 function formatConfidence(value) {
-  return `${Math.round((value || 0) * 100)}%`
+  return `${Math.round(value || 0)}%`
 }
 
 function App() {
@@ -111,6 +111,6 @@ function App() {
 
 function Metric({ label, value, accent }) { return <div className={`metric metric-${accent}`}><span>{label}</span><strong>{value}</strong></div> }
 function FileDrop({ files, inputRef, multiple = false, onChange }) { return <label className="file-drop"><input ref={inputRef} type="file" accept=".xlsx" multiple={multiple} onChange={onChange} /><span className="upload-symbol">＋</span><span>{files.length ? `${files.length} workbook${files.length === 1 ? '' : 's'} selected` : 'Choose .xlsx workbook'}</span><small>{files.length ? files.map((file) => file.name).join(', ') : 'or drop it here'}</small></label> }
-function PredictionTable({ predictions }) { if (!predictions.length) return <div className="empty-state">No shifts match your search.</div>; return <div className="table-wrap"><table><thead><tr><th>Shift</th><th>Assignment</th><th>Confidence</th><th>Status</th><th>Reasoning</th></tr></thead><tbody>{predictions.map((prediction, index) => <tr key={`${prediction.date}-${prediction.location}-${index}`}><td><strong>{prediction.location}</strong><span>{prediction.day} · {prediction.shift_type} · {prediction.start_time}–{prediction.end_time}</span></td><td className="assignment">{prediction.assigned_person || 'Unassigned'}</td><td><span className={`confidence ${prediction.confidence >= 0.8 ? 'high' : prediction.confidence >= 0.6 ? 'medium' : 'low'}`}>{formatConfidence(prediction.confidence)}</span></td><td><span className={`status-badge ${prediction.needs_review ? 'review' : 'ready'}`}>{prediction.needs_review ? 'Review' : 'Ready'}</span></td><td className="reasoning">{prediction.reasoning || 'No reasoning available.'}</td></tr>)}</tbody></table></div> }
+function PredictionTable({ predictions }) { if (!predictions.length) return <div className="empty-state">No shifts match your search.</div>; return <div className="table-wrap"><table><thead><tr><th>Shift</th><th>Assignment</th><th>Confidence</th><th>Status</th><th>Reasoning</th></tr></thead><tbody>{predictions.map((prediction, index) => <tr key={`${prediction.date}-${prediction.location}-${index}`}><td><strong>{prediction.location}</strong><span>{prediction.day} · {prediction.shift_type} · {prediction.start_time}–{prediction.end_time}</span></td><td className="assignment">{prediction.assigned_person || 'Unassigned'}</td><td><span className={`confidence ${prediction.confidence >= 80 ? 'high' : prediction.confidence >= 60 ? 'medium' : 'low'}`}>{formatConfidence(prediction.confidence)}</span></td><td><span className={`status-badge ${prediction.needs_review ? 'review' : 'ready'}`}>{prediction.needs_review ? 'Review' : 'Ready'}</span></td><td className="reasoning">{prediction.reasoning || 'No reasoning available.'}</td></tr>)}</tbody></table></div> }
 
 export default App
