@@ -19,7 +19,9 @@ app = FastAPI(title="Shift Sense API", description="AI-Powered Shift Allocation 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000",
-        "http://127.0.0.1:3000"],  # In production, replace with specific origins
+        "http://127.0.0.1:3000",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173"],  # In production, replace with specific origins
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
